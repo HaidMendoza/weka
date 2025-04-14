@@ -110,7 +110,10 @@ public class WekaController {
 
     @DeleteMapping("/eliminar")
     public ResponseEntity<String> eliminarHistorial() {
-        historial.clear(); // <- Esto limpia la lista
+        if (historial.isEmpty()) {
+            return ResponseEntity.ok("No hay elementos para eliminar.");
+        }
+        historial.clear();
         return ResponseEntity.ok("Historial eliminado correctamente.");
     }
 
